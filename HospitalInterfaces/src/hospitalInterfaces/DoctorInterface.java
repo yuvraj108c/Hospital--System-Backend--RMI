@@ -7,6 +7,8 @@ import org.json.JSONException;
 
 public interface DoctorInterface extends Remote {
 
-    public String getAllDoctors() throws RemoteException, SQLException, JSONException;
+    public String login(String email, String password) throws RemoteException, SQLException, JSONException;
+
+    public String MD5(String md5);
 
 }

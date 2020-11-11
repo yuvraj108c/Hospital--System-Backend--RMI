@@ -52,39 +52,4 @@ public class UserImplementation extends UnicastRemoteObject implements UserInter
         return "";
     }
 
-    public String getAllDoctors(int dept_id) throws SQLException, JSONException {
-        JSONArray doctors_details = new JSONArray();
-
-        String query = "select users.*, department.id as deptid, department.name as deptname from users,department where users.departmentid = department.id and department.id = ?";
-        PreparedStatement preparedStmt = this.conn.prepareStatement(query);
-        preparedStmt.setInt(1, dept_id);
-        ResultSet doctors = preparedStmt.executeQuery();
-
-        while (doctors.next()) {
-            String id = doctors.getString("id");
-            String fname = doctors.getString("fname");
-            String lname = doctors.getString("lname");
-            String phone = doctors.getString("phone");
-            String address = doctors.getString("address");
-            String dob = doctors.getString("dob");
-            String gender = doctors.getString("gender");
-            String deptid = doctors.getString("deptid");
-            String deptname = doctors.getString("deptname");
-
-            JSONObject doctor = new JSONObject();
-            doctor.put("id", id);
-            doctor.put("fname", fname);
-            doctor.put("lname", lname);
-            doctor.put("phone", phone);
-            doctor.put("address", address);
-            doctor.put("dob", dob);
-            doctor.put("gender", gender);
-            doctor.put("deptid", deptid);
-            doctor.put("deptname", deptname);
-            doctors_details.put(doctor);
-        }
-
-        return doctors_details.toString();
-    }
-
 }
