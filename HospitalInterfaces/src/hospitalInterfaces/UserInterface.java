@@ -9,5 +9,7 @@ public interface UserInterface extends Remote {
 
     public String login(String email, String password) throws RemoteException, SQLException, JSONException;
 
-    public String MD5(String md5);
+    public String MD5(String md5) throws RemoteException;
+
+    public String getAllDoctors(int dept_id) throws RemoteException, SQLException, JSONException;
 }

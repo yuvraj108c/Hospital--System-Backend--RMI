@@ -17,13 +17,11 @@ public class server {
             PatientImplementation patient = new PatientImplementation(conn);
             CheckupImplementation checkup = new CheckupImplementation(conn);
             UserImplementation user = new UserImplementation(conn);
-            DoctorImplementation doctor = new DoctorImplementation(conn);
             SpecialTreatmentImplementation specialTreatment = new SpecialTreatmentImplementation(conn);
 
             Naming.rebind("PatientService", patient);
             Naming.rebind("CheckupService", checkup);
             Naming.rebind("UserService", user);
-            Naming.rebind("DoctorService", doctor);
             Naming.rebind("SpecialTreatmentService", specialTreatment);
 
             System.out.println("Server is ready on port: " + PORT);
