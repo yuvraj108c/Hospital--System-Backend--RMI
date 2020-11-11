@@ -16,9 +16,10 @@ import hospitalInterfaces.SpecialTreatmentInterface;
 public class SpecialTreatmentImplementation extends UnicastRemoteObject implements SpecialTreatmentInterface {
     protected Connection conn;
 
-    protected SpecialTreatmentImplementation() throws RemoteException {
+    protected SpecialTreatmentImplementation(Connection conn) throws RemoteException {
         super();
-        conn = Database.getConnection();
+        this.conn = conn;
+
     }
 
     public String getPatientsForSpecialTreatment(int dept_id, String status) throws SQLException, JSONException {

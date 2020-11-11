@@ -16,9 +16,9 @@ import hospitalInterfaces.DoctorInterface;
 public class DoctorImplementation extends UnicastRemoteObject implements DoctorInterface {
     protected Connection conn;
 
-    protected DoctorImplementation() throws RemoteException {
+    protected DoctorImplementation(Connection conn) throws RemoteException {
         super();
-        conn = Database.getConnection();
+        this.conn = conn;
     }
 
     public String getAllDoctors(int dept_id) throws SQLException, JSONException {

@@ -16,9 +16,9 @@ import hospitalInterfaces.CheckupInterface;
 public class CheckupImplementation extends UnicastRemoteObject implements CheckupInterface {
     protected Connection conn;
 
-    protected CheckupImplementation() throws RemoteException {
+    protected CheckupImplementation(Connection conn) throws RemoteException {
         super();
-        conn = Database.getConnection();
+        this.conn = conn;
     }
 
     public boolean createCheckup(Integer patientId, Integer doctorid, String reason, String date) throws SQLException {

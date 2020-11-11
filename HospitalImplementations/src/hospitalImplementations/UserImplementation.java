@@ -16,9 +16,9 @@ import hospitalInterfaces.UserInterface;
 public class UserImplementation extends UnicastRemoteObject implements UserInterface {
     protected Connection conn;
 
-    protected UserImplementation() throws RemoteException {
+    protected UserImplementation(Connection conn) throws RemoteException {
         super();
-        conn = Database.getConnection();
+        this.conn = conn;
     }
 
     public String MD5(String md5) {

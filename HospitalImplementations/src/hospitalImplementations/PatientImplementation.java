@@ -16,9 +16,9 @@ import hospitalInterfaces.PatientInterface;
 public class PatientImplementation extends UnicastRemoteObject implements PatientInterface {
     protected Connection conn;
 
-    protected PatientImplementation() throws RemoteException {
+    protected PatientImplementation(Connection conn) throws RemoteException {
         super();
-        conn = Database.getConnection();
+        this.conn = conn;
     }
 
     public String getAllPatients() throws SQLException, JSONException {
