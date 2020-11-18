@@ -2,15 +2,19 @@ package hospitalImplementations;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.sql.Connection;
 
+import realtimespecialtreatmentinterface.RealTimeSpecailTreatmentInterface;
+
 public class server {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NotBoundException {
         try {
             int PORT = 1099;
+            System.setProperty("java.rmi.server.hostname", "192.168.43.216");
             Registry r = LocateRegistry.createRegistry(PORT);
             Connection conn = Database.getConnection();
 
@@ -25,6 +29,7 @@ public class server {
             Naming.rebind("SpecialTreatmentService", specialTreatment);
 
             System.out.println("Server is ready on port: " + PORT);
+
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();
         }

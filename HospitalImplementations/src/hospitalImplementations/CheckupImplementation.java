@@ -30,8 +30,12 @@ public class CheckupImplementation extends UnicastRemoteObject implements Checku
         preparedStmt.setString(4, "");
         preparedStmt.setString(5, "Incomplete");
         preparedStmt.setString(6, date);
+        
+        int result = preparedStmt.executeUpdate();
+        
+        System.out.println("Checkup created: " + result);
 
-        return preparedStmt.executeUpdate() == 1;
+        return result == 1;
     }
 
     public String getCheckups(String status, int doctorid) throws SQLException, JSONException {

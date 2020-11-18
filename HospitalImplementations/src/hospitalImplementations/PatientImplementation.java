@@ -61,7 +61,11 @@ public class PatientImplementation extends UnicastRemoteObject implements Patien
         preparedStmt.setString(4, address);
         preparedStmt.setString(5, dob);
         preparedStmt.setString(6, gender);
+        
+        int result = preparedStmt.executeUpdate();
+        
+        System.out.println("Patient added : "+ result);
 
-        return preparedStmt.executeUpdate() == 1;
+        return result == 1;
     }
 }

@@ -1,6 +1,9 @@
 package hospitalImplementations;
 
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import hospitalInterfaces.SpecialTreatmentInterface;
+import realtimespecialtreatmentinterface.RealTimeSpecailTreatmentInterface;
 
 public class SpecialTreatmentImplementation extends UnicastRemoteObject implements SpecialTreatmentInterface {
     protected Connection conn;
@@ -89,7 +93,27 @@ public class SpecialTreatmentImplementation extends UnicastRemoteObject implemen
         preparedStmt.setString(3, "Incomplete");
         preparedStmt.setInt(4, departmentid);
 
-        return preparedStmt.executeUpdate() == 1;
+        int result = preparedStmt.executeUpdate();
+
+        if (result == 1) {
+
+            // SpecialTreatmentreal
+            Registry rt;
+            try {
+                rt = LocateRegistry.getRegistry("192.168.43.136", 1098);
+                RealTimeSpecailTreatmentInterface realTimeSpecailTreatmentInterface = (RealTimeSpecailTreatmentInterface) rt
+                        .lookup("RealTimeSpecialTreatmentService");
+                
+                realTimeSpecailTreatmentInterface.updateAvailable();
+
+            } catch (RemoteException | NotBoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+        }
+
+        return result == 1;
     }
 
     public boolean updateSpecialTreatment(int specialtreatment_id, String givenTreatment, int specialist_id,

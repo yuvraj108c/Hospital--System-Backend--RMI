@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="C:/Users/Yuvraj/Downloads/mysql-connector-java-8.0.22.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Yuvraj/Downloads/java-json.jar/java-json.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Yuvraj/Desktop/Hospital Backend - RMI/HospitalInterfaces.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Yuvraj/Desktop/Hospital Backend - RMI/RealTimeSpecialTreatmentInterface.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
